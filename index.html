@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://static.readdy.ai/static/e.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedEquip Pro - Professional Medical Furniture & Equipment</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .hero-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=modern%20medical%20clinic%20interior%20with%20examination%20tables%20and%20professional%20medical%20equipment%20in%20clean%20white%20environment%20with%20natural%20lighting%20and%20minimalist%20design%20showcasing%20professional%20healthcare%20furniture&width=1920&height=800&seq=hero001&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .comparison-sticky {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-sticky.active {
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .category-card:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Left Section (Logo + Nav) -->
+      <div class="flex items-center space-x-8">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 text-2xl font-['Pacifico'] text-primary">
+          <img src="https://resource.freedomitinstitutions.com/image/gallery/logo/Your%20Logo%20(1).png" 
+               alt="Logo" 
+               class="h-20 w-20 object-contain">
+          <span class="hidden sm:inline"></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <!-- Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center space-x-1 text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">
+              <span>Products</span>
+              <i class="ri-arrow-down-s-line w-4 h-4"></i>
+            </button>
+            <div class="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div class="py-2">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Examination Tables</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Treatment Chairs</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Medical Carts</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Surgical Equipment</a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Patient Monitors</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Solutions</a>
+          <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Resources</a>
+          <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Support</a>
+        </nav>
+      </div>
+
+      <!-- Right Section -->
+      <div class="flex items-center space-x-4">
+        <!-- Search -->
+        <div class="relative hidden sm:block">
+          <input type="text" 
+                 placeholder="Search medical equipment..." 
+                 class="w-64 pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+          <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <i class="ri-search-line"></i>
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <button class="w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+          <i class="ri-shopping-cart-line"></i>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+          <i class="ri-menu-line text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Sidebar -->
+<div id="mobileMenu" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+  <div class="absolute top-0 left-0 w-64 h-full bg-white shadow-lg p-6 transform -translate-x-full transition-transform duration-300">
+    <!-- Close Button -->
+    <button id="closeMenu" class="absolute top-4 right-4 text-gray-600 hover:text-primary">
+      <i class="ri-close-line text-2xl"></i>
+    </button>
+
+    <!-- Nav Links -->
+    <nav class="mt-8 space-y-4">
+      <div>
+        <p class="text-gray-500 text-xs uppercase mb-2">Products</p>
+        <a href="#" class="block text-gray-700 hover:text-primary py-1">Examination Tables</a>
+        <a href="#" class="block text-gray-700 hover:text-primary py-1">Treatment Chairs</a>
+        <a href="#" class="block text-gray-700 hover:text-primary py-1">Medical Carts</a>
+        <a href="#" class="block text-gray-700 hover:text-primary py-1">Surgical Equipment</a>
+        <a href="#" class="block text-gray-700 hover:text-primary py-1">Patient Monitors</a>
+      </div>
+      <a href="#" class="block text-gray-700 hover:text-primary">Solutions</a>
+      <a href="#" class="block text-gray-700 hover:text-primary">Resources</a>
+      <a href="#" class="block text-gray-700 hover:text-primary">Support</a>
+    </nav>
+  </div>
+</div>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+  const sidebar = mobileMenu.querySelector("div");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.remove("hidden");
+    setTimeout(() => {
+      sidebar.classList.remove("-translate-x-full");
+    }, 10);
+  });
+
+  closeMenu.addEventListener("click", () => {
+    sidebar.classList.add("-translate-x-full");
+    setTimeout(() => {
+      mobileMenu.classList.add("hidden");
+    }, 300);
+  });
+
+  // Close sidebar if background clicked
+  mobileMenu.addEventListener("click", (e) => {
+    if (e.target === mobileMenu) {
+      sidebar.classList.add("-translate-x-full");
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+      }, 300);
+    }
+  });
+</script>
+
+    <main>
+        <section class="hero-bg relative min-h-[600px] flex items-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="max-w-2xl">
+                    <h1 class="text-5xl font-bold text-gray-900 mb-6">Professional Medical Equipment for Modern Healthcare</h1>
+                    <p class="text-xl text-gray-600 mb-8">Discover our comprehensive range of examination tables, treatment chairs, medical carts, and accessories designed for clinics and hospitals worldwide.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary text-white px-8 py-3 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap">
+                            Browse Products
+                        </button>
+                        <button class="border border-gray-300 text-gray-700 px-8 py-3 !rounded-button font-semibold hover:bg-gray-50 transition-colors whitespace-nowrap">
+                            Request Catalog
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Product Categories</h2>
+                    <p class="text-lg text-gray-600">Explore our comprehensive range of medical furniture and equipment</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=modern%20medical%20examination%20table%20in%20clean%20white%20clinical%20setting%20with%20adjustable%20height%20and%20professional%20medical%20equipment%20design&width=400&height=300&seq=cat001&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Examination Tables</h3>
+                            <p class="text-gray-600 text-sm mb-4">Adjustable height tables for patient examinations</p>
+                            <span class="text-primary text-sm font-medium">15 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=comfortable%20medical%20treatment%20chair%20with%20adjustable%20positioning%20in%20modern%20healthcare%20facility%20with%20clean%20white%20background&width=400&height=300&seq=cat002&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Treatment Chairs</h3>
+                            <p class="text-gray-600 text-sm mb-4">Ergonomic chairs for various medical procedures</p>
+                            <span class="text-primary text-sm font-medium">12 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=mobile%20medical%20cart%20with%20multiple%20drawers%20and%20equipment%20storage%20in%20hospital%20corridor%20with%20clean%20professional%20design&width=400&height=300&seq=cat003&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Medical Carts</h3>
+                            <p class="text-gray-600 text-sm mb-4">Mobile storage solutions for medical supplies</p>
+                            <span class="text-primary text-sm font-medium">18 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=surgical%20equipment%20and%20instruments%20on%20sterile%20table%20in%20operating%20room%20with%20professional%20medical%20lighting&width=400&height=300&seq=cat004&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Surgical Equipment</h3>
+                            <p class="text-gray-600 text-sm mb-4">Precision instruments for surgical procedures</p>
+                            <span class="text-primary text-sm font-medium">8 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=patient%20monitoring%20equipment%20with%20digital%20displays%20in%20modern%20hospital%20room%20with%20clean%20white%20medical%20environment&width=400&height=300&seq=cat005&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Patient Monitors</h3>
+                            <p class="text-gray-600 text-sm mb-4">Advanced monitoring systems for patient care</p>
+                            <span class="text-primary text-sm font-medium">6 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=medical%20lighting%20equipment%20and%20examination%20lamps%20in%20clinical%20setting%20with%20adjustable%20positioning%20and%20bright%20illumination&width=400&height=300&seq=cat006&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Medical Lighting</h3>
+                            <p class="text-gray-600 text-sm mb-4">Professional lighting solutions for examinations</p>
+                            <span class="text-primary text-sm font-medium">9 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=medical%20storage%20cabinets%20and%20shelving%20units%20in%20hospital%20pharmacy%20with%20organized%20medical%20supplies%20and%20clean%20design&width=400&height=300&seq=cat007&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Storage Solutions</h3>
+                            <p class="text-gray-600 text-sm mb-4">Organized storage for medical supplies</p>
+                            <span class="text-primary text-sm font-medium">11 Products →</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden cursor-pointer transition-all duration-300">
+                        <div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=medical%20accessories%20and%20small%20equipment%20tools%20arranged%20on%20clean%20white%20surface%20in%20professional%20healthcare%20setting&width=400&height=300&seq=cat008&orientation=squarish')"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Accessories</h3>
+                            <p class="text-gray-600 text-sm mb-4">Essential accessories and small equipment</p>
+                            <span class="text-primary text-sm font-medium">14 Products →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
+                    <p class="text-lg text-gray-600">Discover our most popular medical equipment solutions</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="product-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300">
+                        <div class="relative">
+                            <div class="h-64 bg-cover bg-top" style="background-image: url('https://readdy.ai/api/search-image?query=premium%20electric%20examination%20table%20with%20height%20adjustment%20and%20patient%20positioning%20controls%20in%20modern%20medical%20clinic%20with%20clean%20white%20background&width=400&height=400&seq=prod001&orientation=squarish')"></div>
+                            <div class="absolute top-3 right-3">
+                                <input type="checkbox" class="compare-checkbox hidden" id="compare-1">
+                                <label for="compare-1" class="w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50">
+                                    <i class="ri-add-line text-gray-600"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">ElectroMax Pro Table</h3>
+                            <p class="text-gray-600 text-sm mb-3">Electric height-adjustable examination table with memory positions</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-gray-900">$3,299</span>
+                                <span class="text-sm text-gray-500">Free Shipping</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Weight Capacity:</span>
+                                    <span class="font-medium">500 lbs</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Height Range:</span>
+                                    <span class="font-medium">18" - 36"</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap">
+                                Request Quote
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300">
+                        <div class="relative">
+                            <div class="h-64 bg-cover bg-top" style="background-image: url('https://readdy.ai/api/search-image?query=comfortable%20medical%20treatment%20chair%20with%20adjustable%20backrest%20and%20armrests%20in%20healthcare%20facility%20with%20professional%20medical%20design&width=400&height=400&seq=prod002&orientation=squarish')"></div>
+                            <div class="absolute top-3 right-3">
+                                <input type="checkbox" class="compare-checkbox hidden" id="compare-2">
+                                <label for="compare-2" class="w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50">
+                                    <i class="ri-add-line text-gray-600"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">ComfortCare Chair</h3>
+                            <p class="text-gray-600 text-sm mb-3">Multi-position treatment chair with memory foam cushioning</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-gray-900">$2,149</span>
+                                <span class="text-sm text-gray-500">In Stock</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Weight Capacity:</span>
+                                    <span class="font-medium">400 lbs</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Positions:</span>
+                                    <span class="font-medium">5 Memory</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300">
+                        <div class="relative">
+                            <div class="h-64 bg-cover bg-top" style="background-image: url('https://readdy.ai/api/search-image?query=mobile%20medical%20cart%20with%20multiple%20drawers%20and%20equipment%20storage%20rolling%20through%20hospital%20hallway%20with%20professional%20design&width=400&height=400&seq=prod003&orientation=squarish')"></div>
+                            <div class="absolute top-3 right-3">
+                                <input type="checkbox" class="compare-checkbox hidden" id="compare-3">
+                                <label for="compare-3" class="w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50">
+                                    <i class="ri-add-line text-gray-600"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">MobileMed Cart Pro</h3>
+                            <p class="text-gray-600 text-sm mb-3">6-drawer mobile cart with locking system and power outlet</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-gray-900">$899</span>
+                                <span class="text-sm text-green-600">Best Seller</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Drawers:</span>
+                                    <span class="font-medium">6 Locking</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Dimensions:</span>
+                                    <span class="font-medium">24"×18"×35"</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="product-card bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300">
+                        <div class="relative">
+                            <div class="h-64 bg-cover bg-top" style="background-image: url('https://readdy.ai/api/search-image?query=advanced%20patient%20monitoring%20system%20with%20digital%20displays%20and%20vital%20signs%20equipment%20in%20modern%20hospital%20room%20with%20clean%20medical%20design&width=400&height=400&seq=prod004&orientation=squarish')"></div>
+                            <div class="absolute top-3 right-3">
+                                <input type="checkbox" class="compare-checkbox hidden" id="compare-4">
+                                <label for="compare-4" class="w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center cursor-pointer hover:bg-gray-50">
+                                    <i class="ri-add-line text-gray-600"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">VitalWatch Monitor</h3>
+                            <p class="text-gray-600 text-sm mb-3">Multi-parameter patient monitor with wireless connectivity</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-gray-900">$4,799</span>
+                                <span class="text-sm text-gray-500">2-3 Weeks</span>
+                            </div>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Parameters:</span>
+                                    <span class="font-medium">ECG, SpO2, BP</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Display:</span>
+                                    <span class="font-medium">15" Touchscreen</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-primary text-white py-2 !rounded-button font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap">
+                                Request Quote
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button class="bg-white border border-gray-300 text-gray-700 px-8 py-3 !rounded-button font-semibold hover:bg-gray-50 transition-colors whitespace-nowrap">
+                        View All Products
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose MedEquip Pro?</h2>
+                    <p class="text-lg text-gray-600">Trusted by healthcare professionals worldwide</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="ri-shield-check-line text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">FDA Certified</h3>
+                        <p class="text-gray-600">All products meet strict FDA regulations and quality standards</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="ri-truck-line text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Free Shipping</h3>
+                        <p class="text-gray-600">Complimentary shipping on orders over $500 across the US</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="ri-customer-service-2-line text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Support</h3>
+                        <p class="text-gray-600">Dedicated technical support team available 24/7</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="ri-award-line text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">5-Year Warranty</h3>
+                        <p class="text-gray-600">Comprehensive warranty coverage on all equipment</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+                    <p class="text-lg text-gray-600">Trusted by over 5,000 healthcare facilities</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"The ElectroMax Pro Table has transformed our patient examination process. The height adjustment is smooth and the build quality is exceptional."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Dr. Sarah Johnson</div>
+                                <div class="text-sm text-gray-600">Metro General Hospital</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Outstanding customer service and product quality. The mobile carts have improved our workflow efficiency significantly."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Michael Chen</div>
+                                <div class="text-sm text-gray-600">City Medical Center</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Reliable equipment with excellent warranty support. MedEquip Pro has been our trusted partner for over 3 years."</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Dr. Emily Rodriguez</div>
+                                <div class="text-sm text-gray-600">Westside Clinic</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Logo + About -->
+      <div>
+        <a href="/" class="flex items-center gap-3 mb-4">
+          <img src="https://resource.freedomitinstitutions.com/image/gallery/logo/White%20Orange.png" 
+               alt="MedEquip Pro Logo" 
+               class="h-20 w-20 object-contain">
+          <span class="font-['Pacifico'] text-2xl"></span>
+        </a>
+        
+        <p class="text-gray-400 mb-4">
+          Professional medical equipment for modern healthcare facilities worldwide.
+        </p>
+        
+        <!-- Social Icons -->
+        <div class="flex space-x-4">
+          <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-white">
+            <i class="ri-linkedin-fill"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Products</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Examination Tables</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Treatment Chairs</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Medical Carts</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Surgical Equipment</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Patient Monitors</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Support</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-white">Technical Support</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Product Manuals</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Warranty Claims</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Installation Guide</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+        <div class="space-y-2 text-gray-400">
+          <div class="flex items-center">
+            <i class="ri-phone-line mr-2"></i>
+            <span>1-800-MEDEQUIP</span>
+          </div>
+          <div class="flex items-center">
+            <i class="ri-mail-line mr-2"></i>
+            <span>info@medequippro.com</span>
+          </div>
+          <div class="flex items-start">
+            <i class="ri-map-pin-line mr-2 mt-1"></i>
+            <span>123 Medical Drive<br>Healthcare City, HC 12345</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="text-gray-400 text-sm">
+        © 2025 MedEquip Pro. All rights reserved.
+      </div>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+        <a href="#" class="text-gray-400 hover:text-white text-sm">Shipping Info</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <div class="comparison-sticky bg-white border-t shadow-lg" id="comparisonBar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm font-medium text-gray-900">Compare Products:</span>
+                    <div class="flex items-center space-x-2" id="comparisonItems">
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button class="text-sm text-gray-500 hover:text-gray-700" onclick="clearComparison()">Clear All</button>
+                    <button class="bg-primary text-white px-6 py-2 !rounded-button text-sm font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap" onclick="openComparison()">
+                        Compare Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="comparison-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            const comparisonBar = document.getElementById('comparisonBar');
+            const comparisonItems = document.getElementById('comparisonItems');
+            let selectedProducts = [];
+
+            const productData = {
+                'compare-1': {
+                    name: 'ElectroMax Pro Table',
+                    price: '$3,299'
+                },
+                'compare-2': {
+                    name: 'ComfortCare Chair',
+                    price: '$2,149'
+                },
+                'compare-3': {
+                    name: 'MobileMed Cart Pro',
+                    price: '$899'
+                },
+                'compare-4': {
+                    name: 'VitalWatch Monitor',
+                    price: '$4,799'
+                }
+            };
+
+            document.querySelectorAll('.compare-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const productId = this.id;
+                    const label = document.querySelector(`label[for="${productId}"]`);
+
+                    if (this.checked) {
+                        if (selectedProducts.length < 4) {
+                            selectedProducts.push(productId);
+                            label.innerHTML = '<i class="ri-check-line text-primary"></i>';
+                            label.classList.add('bg-primary/10');
+                        } else {
+                            this.checked = false;
+                            alert('You can compare up to 4 products at a time.');
+                        }
+                    } else {
+                        selectedProducts = selectedProducts.filter(id => id !== productId);
+                        label.innerHTML = '<i class="ri-add-line text-gray-600"></i>';
+                        label.classList.remove('bg-primary/10');
+                    }
+
+                    updateComparisonBar();
+                });
+            });
+
+            function updateComparisonBar() {
+                if (selectedProducts.length > 0) {
+                    comparisonBar.classList.add('active');
+                    comparisonItems.innerHTML = selectedProducts.map(productId => {
+                        const product = productData[productId];
+                        return `
+                            <div class="flex items-center bg-gray-100 rounded px-3 py-1">
+                                <span class="text-sm text-gray-700">${product.name}</span>
+                                <button class="ml-2 text-gray-400 hover:text-gray-600" onclick="removeFromComparison('${productId}')">
+                                    <i class="ri-close-line text-xs"></i>
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    comparisonBar.classList.remove('active');
+                }
+            }
+
+            window.removeFromComparison = function(productId) {
+                const checkbox = document.getElementById(productId);
+                checkbox.checked = false;
+                checkbox.dispatchEvent(new Event('change'));
+            };
+
+            window.clearComparison = function() {
+                selectedProducts.forEach(productId => {
+                    const checkbox = document.getElementById(productId);
+                    checkbox.checked = false;
+                    const label = document.querySelector(`label[for="${productId}"]`);
+                    label.innerHTML = '<i class="ri-add-line text-gray-600"></i>';
+                    label.classList.remove('bg-primary/10');
+                });
+                selectedProducts = [];
+                updateComparisonBar();
+            };
+
+            window.openComparison = function() {
+                if (selectedProducts.length >= 2) {
+                    alert('Opening comparison view for selected products...');
+                } else {
+                    alert('Please select at least 2 products to compare.');
+                }
+            };
+        });
+    </script>
+
+    <script id="mobile-menu-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden button');
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    alert('Mobile menu functionality would be implemented here');
+                });
+            }
+        });
+    </script>
+
+    <script id="search-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('input[type="text"]');
+
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const searchTerm = this.value.trim();
+                        if (searchTerm) {
+                            alert(`Searching for: ${searchTerm}`);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
